@@ -190,14 +190,14 @@
 	// ??? will be replaced with the entered username(escaped) at login
 	putenv('TTRSS_LDAP_AUTH_SEARCHFILTER=(&(objectClass=person)(uid=???))');
 
-// Optional configuration
-// putenv('TTRSS_LDAP_AUTH_BINDDN=cn=serviceaccount,dc=yunohost,dc=org');
-// putenv('TTRSS_LDAP_AUTH_BINDPW=ServiceAccountsPassword');
-// putenv('TTRSS_LDAP_AUTH_LOGIN_ATTRIB=uid');
-// putenv('TTRSS_LDAP_AUTH_LOG_ATTEMPTS=FALSE');
+	// Optional configuration
+	// putenv('TTRSS_LDAP_AUTH_BINDDN=cn=serviceaccount,dc=yunohost,dc=org');
+	// putenv('TTRSS_LDAP_AUTH_BINDPW=ServiceAccountsPassword');
+	// putenv('TTRSS_LDAP_AUTH_LOGIN_ATTRIB=uid');
+	// putenv('TTRSS_LDAP_AUTH_LOG_ATTEMPTS=FALSE');
 
-// Enable Debug Logging
-// putenv('TTRSS_LDAP_AUTH_DEBUG=FALSE');
+	// Enable Debug Logging
+	// putenv('TTRSS_LDAP_AUTH_DEBUG=FALSE');
 
 	
 	putenv('TTRSS_LOG_DESTINATION=sql');
