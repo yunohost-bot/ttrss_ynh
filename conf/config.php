@@ -172,7 +172,7 @@
 	// if you experience weird errors and tt-rss failing to start, blank pages
 	// after login, or content encoding errors, disable it.
 
-	putenv('TTRSS_PLUGINS=auth_internal, note');
+	putenv('TTRSS_PLUGINS=auth_ldap, auth_internal, note');
 	// Comma-separated list of plugins to load automatically for all users.
 	// System plugins have to be specified here. Please enable at least one
 	// authentication plugin here (auth_*).
@@ -180,6 +180,25 @@
 	// disable plugins specified in this list.
 	// Disabling auth_internal in this list would automatically disable
 	// reset password link on the login form.
+
+	// Required parameters:
+putenv('TTRSS_LDAP_AUTH_SERVER_URI=ldap://127.0.0.1:389/');
+putenv('TTRSS_LDAP_AUTH_USETLS=FALSE'); // Enable StartTLS Support for ldap://
+putenv('TTRSS_LDAP_AUTH_ALLOW_UNTRUSTED_CERT=TRUE'); // Allows untrusted certificate
+putenv('TTRSS_LDAP_AUTH_BASEDN=ou=users,dc=yunohost,dc=org');
+putenv('TTRSS_LDAP_AUTH_ANONYMOUSBEFOREBIND=FALSE');
+// ??? will be replaced with the entered username(escaped) at login
+putenv('TTRSS_LDAP_AUTH_SEARCHFILTER=(&(objectClass=person)(uid=???))');
+
+// Optional configuration
+// putenv('TTRSS_LDAP_AUTH_BINDDN=cn=serviceaccount,dc=yunohost,dc=org');
+// putenv('TTRSS_LDAP_AUTH_BINDPW=ServiceAccountsPassword');
+// putenv('TTRSS_LDAP_AUTH_LOGIN_ATTRIB=uid');
+// putenv('TTRSS_LDAP_AUTH_LOG_ATTEMPTS=FALSE');
+
+// Enable Debug Logging
+// putenv('TTRSS_LDAP_AUTH_DEBUG=FALSE');
+
 	
 	putenv('TTRSS_LOG_DESTINATION=sql');
 	// Log destination to use. Possible values: sql (uses internal logging
