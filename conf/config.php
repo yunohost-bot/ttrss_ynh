@@ -188,7 +188,7 @@
 	putenv('TTRSS_LDAP_AUTH_BASEDN=ou=users,dc=yunohost,dc=org');
 	putenv('TTRSS_LDAP_AUTH_ANONYMOUSBEFOREBIND=false');
 	// ??? will be replaced with the entered username(escaped) at login
-	putenv('TTRSS_LDAP_AUTH_SEARCHFILTER=(&(objectClass=person)(uid=???))');
+	putenv('TTRSS_LDAP_AUTH_SEARCHFILTER=(&(|(objectclass=posixAccount))(uid={{username}})(permission=cn=__APP__.main,ou=permission,dc=yunohost,dc=org))');
 
 	// Optional configuration
 	// putenv('TTRSS_LDAP_AUTH_BINDDN=cn=serviceaccount,dc=yunohost,dc=org');
