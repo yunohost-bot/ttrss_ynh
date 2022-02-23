@@ -12,14 +12,14 @@
  *  Configuration
  *  Put the following options in config.php and customize them for your environment
  *
- * 	define('LDAP_AUTH_SERVER_URI', 'ldaps://LDAPServerHostname:port/');
- * 	define('LDAP_AUTH_USETLS', FALSE); // Enable TLS Support for ldaps://
- * 	define('LDAP_AUTH_ALLOW_UNTRUSTED_CERT', TRUE); // Allows untrusted certificate
- * 	define('LDAP_AUTH_BASEDN', 'dc=example,dc=com');
- * 	define('LDAP_AUTH_ANONYMOUSBEFOREBIND', FALSE);
- * 	// ??? will be replaced with the entered username(escaped) at login 
- * 	define('LDAP_AUTH_SEARCHFILTER', '(&(objectClass=person)(uid=???))');
- * 	// Optional configuration
+ *  define('LDAP_AUTH_SERVER_URI', 'ldaps://LDAPServerHostname:port/');
+ *  define('LDAP_AUTH_USETLS', FALSE); // Enable TLS Support for ldaps://
+ *  define('LDAP_AUTH_ALLOW_UNTRUSTED_CERT', TRUE); // Allows untrusted certificate
+ *  define('LDAP_AUTH_BASEDN', 'dc=example,dc=com');
+ *  define('LDAP_AUTH_ANONYMOUSBEFOREBIND', FALSE);
+ *  // ??? will be replaced with the entered username(escaped) at login 
+ *  define('LDAP_AUTH_SEARCHFILTER', '(&(objectClass=person)(uid=???))');
+ *  // Optional configuration
  *      define('LDAP_AUTH_BINDDN', 'cn=serviceaccount,dc=example,dc=com');
  *      define('LDAP_AUTH_BINDPW', 'ServiceAccountsPassword');
  *      define('LDAP_AUTH_LOGIN_ATTRIB', 'uid');
@@ -32,18 +32,18 @@
  */
 
 /**
- * 	Notes -
- * 	LDAP search does not support follow ldap referals. Referals are disabled to 
- * 	allow proper login.  This is particular to Active Directory.  
+ *  Notes -
+ *  LDAP search does not support follow ldap referals. Referals are disabled to 
+ *  allow proper login.  This is particular to Active Directory.  
  * 
- * 	Also group membership can be supported if the user object contains the
- * 	the group membership via attributes.  The following LDAP servers can 
- * 	support this.   
- * 	 * Active Directory
+ *  Also group membership can be supported if the user object contains the
+ *  the group membership via attributes.  The following LDAP servers can 
+ *  support this.   
+ *   * Active Directory
  *   * OpenLDAP support with MemberOf Overlay
  *
  */
-class Auth_Ldap extends Plugin implements IAuthModule {
+class Auth_Ldap extends Auth_Base {
 
     private $link;
     private $host;
@@ -73,7 +73,7 @@ class Auth_Ldap extends Plugin implements IAuthModule {
     function init($host) {
         $this->link = $host->get_link();
         $this->host = $host;
-        $this->base = new Auth_Base($this->link);
+        //$this->base = new Auth_Base($this->link);
 
         $host->add_hook($host::HOOK_AUTH_USER, $this);
     }
@@ -375,10 +375,10 @@ class Auth_Ldap extends Plugin implements IAuthModule {
                         $this->_log('Could not find user name attribute ' . $this->_ldapLoginAttrib . ' in LDAP entry', E_USER_WARNING);
                         return FALSE;
                     }
-                    return $this->base->auto_create_user($ttrssUsername);
+                    return $this->auto_create_user($ttrssUsername);
                 } else {
                     @ldap_close($ldapConn);
-                    return $this->base->auto_create_user($login);
+                    return $this->auto_create_user($login);
                 }
             } else {
                 @ldap_close($ldapConn);
