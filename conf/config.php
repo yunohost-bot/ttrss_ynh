@@ -182,21 +182,21 @@
 	// reset password link on the login form.
 
 	// Required parameters:
-	putenv('LDAP_AUTH_SERVER_URI=ldap://localhost:389/');
-	putenv('LDAP_AUTH_USETLS=false'); // Enable StartTLS Support for ldap://
-	putenv('LDAP_AUTH_ALLOW_UNTRUSTED_CERT=true'); // Allows untrusted certificate
-	putenv('LDAP_AUTH_BASEDN=ou=users,dc=yunohost,dc=org');
-	putenv('LDAP_AUTH_ANONYMOUSBEFOREBIND=false');
-	putenv('LDAP_AUTH_SEARCHFILTER=(&(|(objectclass=posixAccount))(uid={{username}})(permission=cn=__APP__.main,ou=permission,dc=yunohost,dc=org))');
+	define('LDAP_AUTH_SERVER_URI', 'ldap://localhost:389/');
+	define('LDAP_AUTH_USETLS', FALSE); // Enable StartTLS Support for ldap://
+	define('LDAP_AUTH_ALLOW_UNTRUSTED_CERT', TRUE); // Allows untrusted certificate
+	define('LDAP_AUTH_BASEDN', 'ou=users,dc=yunohost,dc=org');
+	define('LDAP_AUTH_ANONYMOUSBEFOREBIND', FALSE);
+	define('LDAP_AUTH_SEARCHFILTER', '(&(|(objectclass=posixAccount))(uid={{username}})(permission=cn=__APP__.main,ou=permission,dc=yunohost,dc=org))');
 
 	// Optional configuration
-	putenv('LDAP_AUTH_BINDDN=cn=__APP__.main,dc=yunohost,dc=org');
-	putenv('LDAP_AUTH_BINDPW=ServiceAccountsPassword');
-	putenv('LDAP_AUTH_LOGIN_ATTRIB=uid');
-	putenv('LDAP_AUTH_LOG_ATTEMPTS=FALSE');
+	define('LDAP_AUTH_BINDDN', 'cn=__APP__.main,dc=yunohost,dc=org');
+	define('LDAP_AUTH_BINDPW', 'ServiceAccountsPassword');
+	define('LDAP_AUTH_LOGIN_ATTRIB', 'uid');
+	define('LDAP_AUTH_LOG_ATTEMPTS', FALSE);
 
 	// Enable Debug Logging
-	putenv('LDAP_AUTH_DEBUG=TRUE');
+	define('LDAP_AUTH_DEBUG', FALSE);
 
 	
 	putenv('TTRSS_LOG_DESTINATION=sql');
