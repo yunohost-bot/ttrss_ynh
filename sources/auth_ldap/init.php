@@ -222,7 +222,7 @@ class Auth_Ldap extends Auth_Base {
      * @param string $password User's password
      * @return boolean
      */
-    function authenticate($login, $password, $service='') {
+    function authenticate($login, $password) {
         if ($login && $password) {
 
             if (!function_exists('ldap_connect')) {
